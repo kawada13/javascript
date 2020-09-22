@@ -1,36 +1,72 @@
-const question = 'ゲーム市場、もっとも売れたゲーム機はどれ？';
+const quiz = [
+  {
+    question: 'ゲーム市場、もっとも売れたゲーム機はどれ？',
+    answers: [
+      'スーパーファミコン',
+      'プレステーション２',
+      '任天堂スイッチ',
+      '任天堂DS'
+    ],
+    correct: '任天堂DS'
+  },
+  {
+    question: 'ラルクのボーカルは？',
+    answers: [
+      'hyde',
+      'tetsuya',
+      'ken',
+      'yukihiro'
+    ],
+    correct: 'hyde'
+  },
+  {
+    question: '好きなお惣菜は？',
+    answers: [
+      '唐揚げ',
+      '生卵',
+      '納豆',
+      '松毬'
+    ],
+    correct: '生卵'
+  },
 
-const answers = [
-  'スーパーファミコン',
-  'プレステーション２',
-  '任天堂スイッチ',
-  '任天堂DS'
 ];
 
-const correct = '任天堂DS';
+console.log(quiz.length);
 
-document.getElementById('js-question').textContent = question;
+let quizLength = quiz.length;
+let quizIndex = 0;
+
+// 変数、定数定義
 
 const $button = document.getElementsByTagName('button');
 let buttonLength = $button.length;
+
+
+// クイズ表示
 const quizSettup = () => {
+  document.getElementById('js-question').textContent = quiz[quizIndex].question;
   let buttonIndex = 0;
-  
   while (buttonIndex < buttonLength) {
-    $button[buttonIndex].textContent = answers[buttonIndex];
+    $button[buttonIndex].textContent = quiz[quizIndex].answers[buttonIndex];
     buttonIndex++;
   }
 }
-
 quizSettup();
 
-console.log($button.length);
 
+// 正答表示
 const clickHandler = (e) => {
-  if (e.target.textContent === correct) {
+  if (e.target.textContent === quiz[quizIndex].correct) {
     alert('正解！');
   } else {
     alert('不正解！');
+  }
+  quizIndex++;
+  if(quizIndex < quizLength){
+    quizSettup();
+  }else {
+    alert('終了！');
   }
 }
 
