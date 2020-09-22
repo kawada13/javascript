@@ -32,13 +32,11 @@ const quiz = [
 
 ];
 
-console.log(quiz.length);
-
-let quizLength = quiz.length;
-let quizIndex = 0;
 
 // 変数、定数定義
-
+let quizLength = quiz.length;
+let quizIndex = 0;
+let score = 0;
 const $button = document.getElementsByTagName('button');
 let buttonLength = $button.length;
 
@@ -59,6 +57,7 @@ quizSettup();
 const clickHandler = (e) => {
   if (e.target.textContent === quiz[quizIndex].correct) {
     alert('正解！');
+    score++;
   } else {
     alert('不正解！');
   }
@@ -66,7 +65,7 @@ const clickHandler = (e) => {
   if(quizIndex < quizLength){
     quizSettup();
   }else {
-    alert('終了！');
+    alert('終了！あなたの正解数は' + score + '/' + quizLength + 'だぞ！お疲れ。');
   }
 }
 
