@@ -12,37 +12,32 @@ const correct = '任天堂DS';
 document.getElementById('js-question').textContent = question;
 
 const $button = document.getElementsByTagName('button');
+let buttonLength = $button.length;
+const quizSettup = () => {
+  let buttonIndex = 0;
+  
+  while (buttonIndex < buttonLength) {
+    $button[buttonIndex].textContent = answers[buttonIndex];
+    buttonIndex++;
+  }
+}
 
-$button[0].textContent = answers[0];
-$button[1].textContent = answers[1];
-$button[2].textContent = answers[2];
-$button[3].textContent = answers[3];
+quizSettup();
 
-$button[0].addEventListener('click', () => {
-  if($button[0].textContent === correct){
+console.log($button.length);
+
+const clickHandler = (e) => {
+  if (e.target.textContent === correct) {
     alert('正解！');
   } else {
     alert('不正解！');
   }
-});
-$button[1].addEventListener('click', () => {
-  if($button[1].textContent === correct){
-    alert('正解！');
-  } else {
-    alert('不正解！');
-  }
-});
-$button[2].addEventListener('click', () => {
-  if($button[2].textContent === correct){
-    alert('正解！');
-  } else {
-    alert('不正解！');
-  }
-});
-$button[3].addEventListener('click', () => {
-  if($button[3].textContent === correct){
-    alert('正解！');
-  } else {
-    alert('不正解！');
-  }
-});
+}
+
+let handleIndex = 0;
+while (handleIndex < buttonLength) {
+  $button[handleIndex].addEventListener('click', (e) => {
+    clickHandler(e);
+  });
+  handleIndex++;
+}
